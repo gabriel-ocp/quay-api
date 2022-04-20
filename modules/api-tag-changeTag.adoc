@@ -31,8 +31,6 @@ Makes changes to a specific tag
 [options="header", width=100%, cols=".^3a,.^9a,.^4a"]
 |===
 |Name|Description|Schema
-|**image** + 
-_optional_|(Deprecated: Use `manifest_digest`) Image to which the tag should point.|
 |**manifest_digest** + 
 _optional_|(If specified) The manifest digest to which the tag should point|
 |**expiration** + 

@@ -21,8 +21,6 @@ Fetch the list of repositories visible to the current user under a variety of si
 _optional_|The page token for the next page|string
 |query|**repo_kind** + 
 _optional_|The kind of repositories to return|string
-|query|**quota** + 
-_optional_|Whether to include the repository's consumed quota.|boolean
 |query|**popularity** + 
 _optional_|Whether to include the repository's popularity metric.|boolean
 |query|**last_modified** + 

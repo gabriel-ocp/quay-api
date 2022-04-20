@@ -31,8 +31,6 @@ Restores a tag to a specific image
 [options="header", width=100%, cols=".^3a,.^9a,.^4a"]
 |===
 |Name|Description|Schema
-|**image** + 
-_optional_|(Deprecated: use `manifest_digest`) Image to which the tag should point|string
 |**manifest_digest** + 
 _optional_|If specified, the manifest digest that should be used|string
 |===

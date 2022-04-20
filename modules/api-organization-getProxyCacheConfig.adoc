@@ -1,9 +1,9 @@
 
-= changeOrganizationQuotaLimit
-
+= getProxyCacheConfig
+Retrieves the proxy cache configuration of the organization.
 
 [discrete]
-== PUT /api/v1/organization/{orgname}/quota/{quota_id}/limit/{limit_id}
+== GET /api/v1/organization/{orgname}/proxycache
 
 
 
@@ -14,27 +14,8 @@
 [options="header", width=100%, cols=".^2a,.^3a,.^9a,.^4a"]
 |===
 |Type|Name|Description|Schema
-|path|**quota_id** + 
-_required_||string
 |path|**orgname** + 
-_required_||string
-|path|**limit_id** + 
-_required_||string
-|===
-
-
-[discrete]
-== Request body schema (application/json)
-
-Description of changing organization quota limit
-
-[options="header", width=100%, cols=".^3a,.^9a,.^4a"]
-|===
-|Name|Description|Schema
-|**type** + 
-_optional_|Type of quota limit: "Warning" or "Reject"|string
-|**threshold_percent** + 
-_optional_|Quota threshold, in percent of quota|integer
+_required_|The name of the organization|string
 |===
 
 

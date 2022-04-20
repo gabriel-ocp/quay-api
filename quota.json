@@ -1,6 +1,6 @@
 {
     "swagger": "2.0",
-    "host": "example-registry-quay-quay-enterprise.apps.docs.quayteam.org",
+    "host": "example-registry-quay-quay-enterprise.apps.docs.gcp.quaydev.org",
     "basePath": "/",
     "schemes": [
         "https"
@@ -18,7 +18,7 @@
         "oauth2_implicit": {
             "type": "oauth2",
             "flow": "implicit",
-            "authorizationUrl": "https://example-registry-quay-quay-enterprise.apps.docs.quayteam.org/oauth/authorize",
+            "authorizationUrl": "https://example-registry-quay-quay-enterprise.apps.docs.gcp.quaydev.org/oauth/authorize",
             "scopes": {
                 "repo:read": "This application will be able to view and pull all repositories visible to the granting user or robot account",
                 "repo:write": "This application will be able to view, push and pull to all repositories to which the granting user or robot account has write access",
@@ -156,58 +156,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "revokeAppToken",
-                "parameters": [
-                    {
-                        "name": "token_uuid",
-                        "in": "path",
-                        "required": true,
-                        "description": "The uuid of the app specific token",
-                        "type": "string"
-                    }
-                ],
-                "description": "Revokes a specific app token for the user.",
-                "tags": [
-                    "appspecifictokens"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "user:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "get": {
                 "operationId": "getAppToken",
                 "parameters": [
@@ -257,6 +205,58 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "revokeAppToken",
+                "parameters": [
+                    {
+                        "name": "token_uuid",
+                        "in": "path",
+                        "required": true,
+                        "description": "The uuid of the app specific token",
+                        "type": "string"
+                    }
+                ],
+                "description": "Revokes a specific app token for the user.",
+                "tags": [
+                    "appspecifictokens"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "user:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             }
@@ -441,65 +441,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "cancelRepoBuild",
-                "parameters": [
-                    {
-                        "name": "build_uuid",
-                        "in": "path",
-                        "required": true,
-                        "description": "The UUID of the build",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "Cancels a repository build.",
-                "tags": [
-                    "build"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "get": {
                 "operationId": "getRepoBuild",
                 "parameters": [
@@ -556,6 +497,65 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "cancelRepoBuild",
+                "parameters": [
+                    {
+                        "name": "build_uuid",
+                        "in": "path",
+                        "required": true,
+                        "description": "The UUID of the build",
+                        "type": "string"
+                    },
+                    {
+                        "name": "repository",
+                        "in": "path",
+                        "required": true,
+                        "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    }
+                ],
+                "description": "Cancels a repository build.",
+                "tags": [
+                    "build"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "repo:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             }
@@ -962,152 +962,6 @@
                     },
                     "204": {
                         "description": "Deleted"
-                    }
-                }
-            }
-        },
-        "/api/v1/repository/{repository}/image/{image_id}": {
-            "x-name": "endpoints.api.image.RepositoryImage",
-            "x-path": "/api/v1/repository/{repository}/image/{image_id}",
-            "x-tag": "image",
-            "parameters": [
-                {
-                    "name": "image_id",
-                    "in": "path",
-                    "required": true,
-                    "description": "The Docker image ID",
-                    "type": "string"
-                },
-                {
-                    "name": "repository",
-                    "in": "path",
-                    "required": true,
-                    "description": "The full path of the repository. e.g. namespace/name",
-                    "type": "string"
-                }
-            ],
-            "get": {
-                "operationId": "getImage",
-                "parameters": [
-                    {
-                        "name": "image_id",
-                        "in": "path",
-                        "required": true,
-                        "description": "The Docker image ID",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "Get the information available for the specified image.",
-                "tags": [
-                    "image"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:read"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "200": {
-                        "description": "Successful invocation"
-                    }
-                }
-            }
-        },
-        "/api/v1/repository/{repository}/image/": {
-            "x-name": "endpoints.api.image.RepositoryImageList",
-            "x-path": "/api/v1/repository/{repository}/image/",
-            "x-tag": "image",
-            "parameters": [
-                {
-                    "name": "repository",
-                    "in": "path",
-                    "required": true,
-                    "description": "The full path of the repository. e.g. namespace/name",
-                    "type": "string"
-                }
-            ],
-            "get": {
-                "operationId": "listRepositoryImages",
-                "parameters": [
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "List the images for the specified repository.",
-                "tags": [
-                    "image"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:read"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "200": {
-                        "description": "Successful invocation"
                     }
                 }
             }
@@ -1887,72 +1741,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteManifestLabel",
-                "parameters": [
-                    {
-                        "name": "manifestref",
-                        "in": "path",
-                        "required": true,
-                        "description": "The digest of the manifest",
-                        "type": "string"
-                    },
-                    {
-                        "name": "labelid",
-                        "in": "path",
-                        "required": true,
-                        "description": "The ID of the label",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "Deletes an existing label from a manifest.",
-                "tags": [
-                    "manifest"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:write"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "get": {
                 "operationId": "getManifestLabel",
                 "parameters": [
@@ -2016,6 +1804,72 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteManifestLabel",
+                "parameters": [
+                    {
+                        "name": "manifestref",
+                        "in": "path",
+                        "required": true,
+                        "description": "The digest of the manifest",
+                        "type": "string"
+                    },
+                    {
+                        "name": "labelid",
+                        "in": "path",
+                        "required": true,
+                        "description": "The ID of the label",
+                        "type": "string"
+                    },
+                    {
+                        "name": "repository",
+                        "in": "path",
+                        "required": true,
+                        "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    }
+                ],
+                "description": "Deletes an existing label from a manifest.",
+                "tags": [
+                    "manifest"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "repo:write"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             }
@@ -2578,15 +2432,146 @@
                 }
             }
         },
-        "/api/v1/namespacequota/{namespace}/quotalimits": {
-            "x-name": "endpoints.api.namespacequota.OrganizationQuotaLimits",
-            "x-path": "/api/v1/namespacequota/{namespace}/quotalimits",
+        "/api/v1/user/quota": {
+            "x-name": "endpoints.api.namespacequota.UserQuotaList",
+            "x-path": "/api/v1/user/quota",
             "x-tag": "namespacequota",
+            "get": {
+                "operationId": "listUserQuota",
+                "parameters": [],
+                "description": "",
+                "tags": [
+                    "namespacequota"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "user:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "200": {
+                        "description": "Successful invocation"
+                    }
+                }
+            }
+        },
+        "/api/v1/organization/{orgname}/quota/{quota_id}/limit/{limit_id}": {
+            "x-name": "endpoints.api.namespacequota.OrganizationQuotaLimit",
+            "x-path": "/api/v1/organization/{orgname}/quota/{quota_id}/limit/{limit_id}",
+            "x-tag": "namespacequota",
+            "put": {
+                "operationId": "changeOrganizationQuotaLimit",
+                "parameters": [
+                    {
+                        "name": "quota_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "description": "Request body contents.",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrgQuotaLimit"
+                        }
+                    }
+                ],
+                "description": "",
+                "tags": [
+                    "namespacequota"
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "200": {
+                        "description": "Successful invocation"
+                    }
+                }
+            },
             "delete": {
                 "operationId": "deleteOrganizationQuotaLimit",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "quota_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit_id",
                         "in": "path",
                         "required": true,
                         "description": "",
@@ -2627,24 +2612,29 @@
                     }
                 }
             },
-            "put": {
-                "operationId": "changeOrganizationQuotaLimit",
+            "get": {
+                "operationId": "getOrganizationQuotaLimit",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "quota_id",
                         "in": "path",
                         "required": true,
                         "description": "",
                         "type": "string"
                     },
                     {
-                        "name": "body",
-                        "in": "body",
+                        "name": "orgname",
+                        "in": "path",
                         "required": true,
-                        "description": "Request body contents.",
-                        "schema": {
-                            "$ref": "#/definitions/NewOrgQuotaLimit"
-                        }
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
                     }
                 ],
                 "description": "",
@@ -2680,12 +2670,24 @@
                         "description": "Successful invocation"
                     }
                 }
-            },
+            }
+        },
+        "/api/v1/organization/{orgname}/quota/{quota_id}/limit": {
+            "x-name": "endpoints.api.namespacequota.OrganizationQuotaLimitList",
+            "x-path": "/api/v1/organization/{orgname}/quota/{quota_id}/limit",
+            "x-tag": "namespacequota",
             "get": {
-                "operationId": "getOrganizationQuotaLimit",
+                "operationId": "listOrganizationQuotaLimit",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "quota_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "orgname",
                         "in": "path",
                         "required": true,
                         "description": "",
@@ -2730,7 +2732,14 @@
                 "operationId": "createOrganizationQuotaLimit",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "quota_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "orgname",
                         "in": "path",
                         "required": true,
                         "description": "",
@@ -2746,7 +2755,7 @@
                         }
                     }
                 ],
-                "description": "Create a new organization quota.",
+                "description": "",
                 "tags": [
                     "namespacequota"
                 ],
@@ -2781,15 +2790,22 @@
                 }
             }
         },
-        "/api/v1/namespacequota/{namespace}/quotareport": {
-            "x-name": "endpoints.api.namespacequota.OrganizationQuotaReport",
-            "x-path": "/api/v1/namespacequota/{namespace}/quotareport",
+        "/api/v1/user/quota/{quota_id}/limit/{limit_id}": {
+            "x-name": "endpoints.api.namespacequota.UserQuotaLimit",
+            "x-path": "/api/v1/user/quota/{quota_id}/limit/{limit_id}",
             "x-tag": "namespacequota",
             "get": {
-                "operationId": "getOrganizationSizeReporting",
+                "operationId": "getUserQuotaLimit",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "quota_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit_id",
                         "in": "path",
                         "required": true,
                         "description": "",
@@ -2799,6 +2815,13 @@
                 "description": "",
                 "tags": [
                     "namespacequota"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "user:admin"
+                        ]
+                    }
                 ],
                 "responses": {
                     "400": {
@@ -2831,15 +2854,15 @@
                 }
             }
         },
-        "/api/v1/namespacequota/{namespace}/quota": {
-            "x-name": "endpoints.api.namespacequota.OrganizationQuota",
-            "x-path": "/api/v1/namespacequota/{namespace}/quota",
+        "/api/v1/user/quota/{quota_id}/limit": {
+            "x-name": "endpoints.api.namespacequota.UserQuotaLimitList",
+            "x-path": "/api/v1/user/quota/{quota_id}/limit",
             "x-tag": "namespacequota",
-            "delete": {
-                "operationId": "deleteOrganizationQuota",
+            "get": {
+                "operationId": "listUserQuotaLimit",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "quota_id",
                         "in": "path",
                         "required": true,
                         "description": "",
@@ -2849,6 +2872,145 @@
                 "description": "",
                 "tags": [
                     "namespacequota"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "user:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "200": {
+                        "description": "Successful invocation"
+                    }
+                }
+            }
+        },
+        "/api/v1/organization/{orgname}/quota/{quota_id}": {
+            "x-name": "endpoints.api.namespacequota.OrganizationQuota",
+            "x-path": "/api/v1/organization/{orgname}/quota/{quota_id}",
+            "x-tag": "namespacequota",
+            "put": {
+                "operationId": "changeOrganizationQuota",
+                "parameters": [
+                    {
+                        "name": "quota_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "description": "Request body contents.",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrgQuota"
+                        }
+                    }
+                ],
+                "description": "",
+                "tags": [
+                    "namespacequota"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "super:user"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "200": {
+                        "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteOrganizationQuota",
+                "parameters": [
+                    {
+                        "name": "quota_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "description": "",
+                "tags": [
+                    "namespacequota"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "super:user"
+                        ]
+                    }
                 ],
                 "responses": {
                     "400": {
@@ -2880,24 +3042,22 @@
                     }
                 }
             },
-            "put": {
-                "operationId": "changeOrganizationQuota",
+            "get": {
+                "operationId": "getOrganizationQuota",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "quota_id",
                         "in": "path",
                         "required": true,
                         "description": "",
                         "type": "string"
                     },
                     {
-                        "name": "body",
-                        "in": "body",
+                        "name": "orgname",
+                        "in": "path",
                         "required": true,
-                        "description": "Request body contents.",
-                        "schema": {
-                            "$ref": "#/definitions/NewOrgQuota"
-                        }
+                        "description": "",
+                        "type": "string"
                     }
                 ],
                 "description": "",
@@ -2933,12 +3093,17 @@
                         "description": "Successful invocation"
                     }
                 }
-            },
+            }
+        },
+        "/api/v1/organization/{orgname}/quota": {
+            "x-name": "endpoints.api.namespacequota.OrganizationQuotaList",
+            "x-path": "/api/v1/organization/{orgname}/quota",
+            "x-tag": "namespacequota",
             "get": {
-                "operationId": "getNamespaceQuota",
+                "operationId": "listOrganizationQuota",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "orgname",
                         "in": "path",
                         "required": true,
                         "description": "",
@@ -2980,10 +3145,10 @@
                 }
             },
             "post": {
-                "operationId": "createNamespaceQuota",
+                "operationId": "createOrganizationQuota",
                 "parameters": [
                     {
-                        "name": "namespace",
+                        "name": "orgname",
                         "in": "path",
                         "required": true,
                         "description": "",
@@ -3034,6 +3199,63 @@
                 }
             }
         },
+        "/api/v1/user/quota/{quota_id}": {
+            "x-name": "endpoints.api.namespacequota.UserQuota",
+            "x-path": "/api/v1/user/quota/{quota_id}",
+            "x-tag": "namespacequota",
+            "get": {
+                "operationId": "getUserQuota",
+                "parameters": [
+                    {
+                        "name": "quota_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "description": "",
+                "tags": [
+                    "namespacequota"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "user:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "200": {
+                        "description": "Successful invocation"
+                    }
+                }
+            }
+        },
         "/api/v1/organization/": {
             "x-name": "endpoints.api.organization.OrganizationList",
             "x-path": "/api/v1/organization/",
@@ -3061,6 +3283,65 @@
                             "user:admin"
                         ]
                     }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "201": {
+                        "description": "Successful creation"
+                    }
+                }
+            }
+        },
+        "/api/v1/organization/{orgname}/validateproxycache": {
+            "x-name": "endpoints.api.organization.ProxyCacheConfigValidation",
+            "x-path": "/api/v1/organization/{orgname}/validateproxycache",
+            "x-tag": "organization",
+            "post": {
+                "operationId": "validateProxyCacheConfig",
+                "parameters": [
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "description": "Request body contents.",
+                        "schema": {
+                            "$ref": "#/definitions/NewProxyCacheConfig"
+                        }
+                    }
+                ],
+                "description": "",
+                "tags": [
+                    "organization"
                 ],
                 "responses": {
                     "400": {
@@ -3179,65 +3460,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteOrganizationApplication",
-                "parameters": [
-                    {
-                        "name": "orgname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The name of the organization",
-                        "type": "string"
-                    },
-                    {
-                        "name": "client_id",
-                        "in": "path",
-                        "required": true,
-                        "description": "The OAuth client ID",
-                        "type": "string"
-                    }
-                ],
-                "description": "Deletes the application under this organization.",
-                "tags": [
-                    "organization"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "org:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "updateOrganizationApplication",
                 "parameters": [
@@ -3303,6 +3525,65 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteOrganizationApplication",
+                "parameters": [
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The name of the organization",
+                        "type": "string"
+                    },
+                    {
+                        "name": "client_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The OAuth client ID",
+                        "type": "string"
+                    }
+                ],
+                "description": "Deletes the application under this organization.",
+                "tags": [
+                    "organization"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "org:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             },
@@ -3493,18 +3774,11 @@
                 }
             }
         },
-        "/api/v1/organization/{orgname}/members/{membername}": {
-            "x-name": "endpoints.api.organization.OrganizationMember",
-            "x-path": "/api/v1/organization/{orgname}/members/{membername}",
+        "/api/v1/organization/{orgname}/proxycache": {
+            "x-name": "endpoints.api.organization.OrganizationProxyCacheConfig",
+            "x-path": "/api/v1/organization/{orgname}/proxycache",
             "x-tag": "organization",
             "parameters": [
-                {
-                    "name": "membername",
-                    "in": "path",
-                    "required": true,
-                    "description": "The username of the organization member",
-                    "type": "string"
-                },
                 {
                     "name": "orgname",
                     "in": "path",
@@ -3514,7 +3788,7 @@
                 }
             ],
             "delete": {
-                "operationId": "removeOrganizationMember",
+                "operationId": "deleteProxyCacheConfig",
                 "parameters": [
                     {
                         "name": "orgname",
@@ -3522,25 +3796,11 @@
                         "required": true,
                         "description": "The name of the organization",
                         "type": "string"
-                    },
-                    {
-                        "name": "membername",
-                        "in": "path",
-                        "required": true,
-                        "description": "The username of the organization member",
-                        "type": "string"
                     }
                 ],
-                "description": "Removes a member from an organization, revoking all its repository priviledges and removing\n        it from all teams in the organization.",
+                "description": "Delete proxy cache configuration for the organization.",
                 "tags": [
                     "organization"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "org:admin"
-                        ]
-                    }
                 ],
                 "responses": {
                     "400": {
@@ -3572,6 +3832,126 @@
                     }
                 }
             },
+            "get": {
+                "operationId": "getProxyCacheConfig",
+                "parameters": [
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The name of the organization",
+                        "type": "string"
+                    }
+                ],
+                "description": "Retrieves the proxy cache configuration of the organization.",
+                "tags": [
+                    "organization"
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "200": {
+                        "description": "Successful invocation"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "createProxyCacheConfig",
+                "parameters": [
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The name of the organization",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "description": "Request body contents.",
+                        "schema": {
+                            "$ref": "#/definitions/NewProxyCacheConfig"
+                        }
+                    }
+                ],
+                "description": "Creates proxy cache configuration for the organization.",
+                "tags": [
+                    "organization"
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "201": {
+                        "description": "Successful creation"
+                    }
+                }
+            }
+        },
+        "/api/v1/organization/{orgname}/members/{membername}": {
+            "x-name": "endpoints.api.organization.OrganizationMember",
+            "x-path": "/api/v1/organization/{orgname}/members/{membername}",
+            "x-tag": "organization",
+            "parameters": [
+                {
+                    "name": "membername",
+                    "in": "path",
+                    "required": true,
+                    "description": "The username of the organization member",
+                    "type": "string"
+                },
+                {
+                    "name": "orgname",
+                    "in": "path",
+                    "required": true,
+                    "description": "The name of the organization",
+                    "type": "string"
+                }
+            ],
             "get": {
                 "operationId": "getOrganizationMember",
                 "parameters": [
@@ -3628,6 +4008,65 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "removeOrganizationMember",
+                "parameters": [
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The name of the organization",
+                        "type": "string"
+                    },
+                    {
+                        "name": "membername",
+                        "in": "path",
+                        "required": true,
+                        "description": "The username of the organization member",
+                        "type": "string"
+                    }
+                ],
+                "description": "Removes a member from an organization, revoking all its repository priviledges and removing\n        it from all teams in the organization.",
+                "tags": [
+                    "organization"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "org:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             }
@@ -3711,58 +4150,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteAdminedOrganization",
-                "parameters": [
-                    {
-                        "name": "orgname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The name of the organization",
-                        "type": "string"
-                    }
-                ],
-                "description": "Deletes the specified organization.",
-                "tags": [
-                    "organization"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "org:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "changeOrganizationDetails",
                 "parameters": [
@@ -3821,6 +4208,58 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteAdminedOrganization",
+                "parameters": [
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The name of the organization",
+                        "type": "string"
+                    }
+                ],
+                "description": "Deletes the specified organization.",
+                "tags": [
+                    "organization"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "org:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             },
@@ -4029,65 +4468,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteUserPermissions",
-                "parameters": [
-                    {
-                        "name": "username",
-                        "in": "path",
-                        "required": true,
-                        "description": "The username of the user to which the permission applies",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "Delete the permission for the user.",
-                "tags": [
-                    "permission"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "changeUserPermissions",
                 "parameters": [
@@ -4153,6 +4533,65 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteUserPermissions",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "required": true,
+                        "description": "The username of the user to which the permission applies",
+                        "type": "string"
+                    },
+                    {
+                        "name": "repository",
+                        "in": "path",
+                        "required": true,
+                        "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    }
+                ],
+                "description": "Delete the permission for the user.",
+                "tags": [
+                    "permission"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "repo:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             },
@@ -4236,80 +4675,21 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteTeamPermissions",
-                "parameters": [
-                    {
-                        "name": "teamname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The name of the team to which the permission applies",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "Delete the permission for the specified team.",
-                "tags": [
-                    "permission"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "changeTeamPermissions",
                 "parameters": [
                     {
-                        "name": "teamname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The name of the team to which the permission applies",
-                        "type": "string"
-                    },
-                    {
                         "name": "repository",
                         "in": "path",
                         "required": true,
                         "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "teamname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The name of the team to which the permission applies",
                         "type": "string"
                     },
                     {
@@ -4363,21 +4743,80 @@
                     }
                 }
             },
-            "get": {
-                "operationId": "getTeamPermissions",
+            "delete": {
+                "operationId": "deleteTeamPermissions",
                 "parameters": [
+                    {
+                        "name": "repository",
+                        "in": "path",
+                        "required": true,
+                        "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    },
                     {
                         "name": "teamname",
                         "in": "path",
                         "required": true,
                         "description": "The name of the team to which the permission applies",
                         "type": "string"
+                    }
+                ],
+                "description": "Delete the permission for the specified team.",
+                "tags": [
+                    "permission"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "repo:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
                     },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
+                    }
+                }
+            },
+            "get": {
+                "operationId": "getTeamPermissions",
+                "parameters": [
                     {
                         "name": "repository",
                         "in": "path",
                         "required": true,
                         "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "teamname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The name of the team to which the permission applies",
                         "type": "string"
                     }
                 ],
@@ -4852,13 +5291,6 @@
                         "type": "string"
                     },
                     {
-                        "name": "quota",
-                        "in": "query",
-                        "required": false,
-                        "description": "Whether to include the repository's consumed quota.",
-                        "type": "boolean"
-                    },
-                    {
                         "name": "popularity",
                         "in": "query",
                         "required": false,
@@ -5167,58 +5599,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteRepository",
-                "parameters": [
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "Delete a repository.",
-                "tags": [
-                    "repository"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "updateRepo",
                 "parameters": [
@@ -5277,6 +5657,58 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteRepository",
+                "parameters": [
+                    {
+                        "name": "repository",
+                        "in": "path",
+                        "required": true,
+                        "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    }
+                ],
+                "description": "Delete a repository.",
+                "tags": [
+                    "repository"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "repo:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             },
@@ -5772,80 +6204,21 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteToken",
-                "parameters": [
-                    {
-                        "name": "code",
-                        "in": "path",
-                        "required": true,
-                        "description": "The token code",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "Delete the repository token.",
-                "tags": [
-                    "repotoken"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "changeToken",
                 "parameters": [
                     {
-                        "name": "code",
-                        "in": "path",
-                        "required": true,
-                        "description": "The token code",
-                        "type": "string"
-                    },
-                    {
                         "name": "repository",
                         "in": "path",
                         "required": true,
                         "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "required": true,
+                        "description": "The token code",
                         "type": "string"
                     },
                     {
@@ -5899,21 +6272,80 @@
                     }
                 }
             },
-            "get": {
-                "operationId": "getTokens",
+            "delete": {
+                "operationId": "deleteToken",
                 "parameters": [
+                    {
+                        "name": "repository",
+                        "in": "path",
+                        "required": true,
+                        "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    },
                     {
                         "name": "code",
                         "in": "path",
                         "required": true,
                         "description": "The token code",
                         "type": "string"
+                    }
+                ],
+                "description": "Delete the repository token.",
+                "tags": [
+                    "repotoken"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "repo:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
                     },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
+                    }
+                }
+            },
+            "get": {
+                "operationId": "getTokens",
+                "parameters": [
                     {
                         "name": "repository",
                         "in": "path",
                         "required": true,
                         "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "required": true,
+                        "description": "The token code",
                         "type": "string"
                     }
                 ],
@@ -6181,17 +6613,17 @@
                 "operationId": "getOrgRobotPermissions",
                 "parameters": [
                     {
-                        "name": "robot_shortname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The short name for the robot, without any user or organization prefix",
-                        "type": "string"
-                    },
-                    {
                         "name": "orgname",
                         "in": "path",
                         "required": true,
                         "description": "The name of the organization",
+                        "type": "string"
+                    },
+                    {
+                        "name": "robot_shortname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The short name for the robot, without any user or organization prefix",
                         "type": "string"
                     }
                 ],
@@ -6261,17 +6693,17 @@
                 "operationId": "regenerateOrgRobotToken",
                 "parameters": [
                     {
-                        "name": "robot_shortname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The short name for the robot, without any user or organization prefix",
-                        "type": "string"
-                    },
-                    {
                         "name": "orgname",
                         "in": "path",
                         "required": true,
                         "description": "The name of the organization",
+                        "type": "string"
+                    },
+                    {
+                        "name": "robot_shortname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The short name for the robot, without any user or organization prefix",
                         "type": "string"
                     }
                 ],
@@ -6469,80 +6901,21 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteOrgRobot",
-                "parameters": [
-                    {
-                        "name": "robot_shortname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The short name for the robot, without any user or organization prefix",
-                        "type": "string"
-                    },
-                    {
-                        "name": "orgname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The name of the organization",
-                        "type": "string"
-                    }
-                ],
-                "description": "Delete an existing organization robot.",
-                "tags": [
-                    "robot"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "org:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "createOrgRobot",
                 "parameters": [
                     {
-                        "name": "robot_shortname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The short name for the robot, without any user or organization prefix",
-                        "type": "string"
-                    },
-                    {
                         "name": "orgname",
                         "in": "path",
                         "required": true,
                         "description": "The name of the organization",
+                        "type": "string"
+                    },
+                    {
+                        "name": "robot_shortname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The short name for the robot, without any user or organization prefix",
                         "type": "string"
                     },
                     {
@@ -6596,21 +6969,80 @@
                     }
                 }
             },
-            "get": {
-                "operationId": "getOrgRobot",
+            "delete": {
+                "operationId": "deleteOrgRobot",
                 "parameters": [
+                    {
+                        "name": "orgname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The name of the organization",
+                        "type": "string"
+                    },
                     {
                         "name": "robot_shortname",
                         "in": "path",
                         "required": true,
                         "description": "The short name for the robot, without any user or organization prefix",
                         "type": "string"
+                    }
+                ],
+                "description": "Delete an existing organization robot.",
+                "tags": [
+                    "robot"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "org:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
                     },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
+                    }
+                }
+            },
+            "get": {
+                "operationId": "getOrgRobot",
+                "parameters": [
                     {
                         "name": "orgname",
                         "in": "path",
                         "required": true,
                         "description": "The name of the organization",
+                        "type": "string"
+                    },
+                    {
+                        "name": "robot_shortname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The short name for the robot, without any user or organization prefix",
                         "type": "string"
                     }
                 ],
@@ -6756,58 +7188,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteUserRobot",
-                "parameters": [
-                    {
-                        "name": "robot_shortname",
-                        "in": "path",
-                        "required": true,
-                        "description": "The short name for the robot, without any user or organization prefix",
-                        "type": "string"
-                    }
-                ],
-                "description": "Delete an existing robot.",
-                "tags": [
-                    "robot"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "user:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "createUserRobot",
                 "parameters": [
@@ -6866,6 +7246,58 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteUserRobot",
+                "parameters": [
+                    {
+                        "name": "robot_shortname",
+                        "in": "path",
+                        "required": true,
+                        "description": "The short name for the robot, without any user or organization prefix",
+                        "type": "string"
+                    }
+                ],
+                "description": "Delete an existing robot.",
+                "tags": [
+                    "robot"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "user:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             },
@@ -7160,93 +7592,6 @@
                     }
                 ],
                 "description": "",
-                "tags": [
-                    "secscan"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:read"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "200": {
-                        "description": "Successful invocation"
-                    }
-                }
-            }
-        },
-        "/api/v1/repository/{repository}/image/{imageid}/security": {
-            "x-name": "endpoints.api.secscan.RepositoryImageSecurity",
-            "x-path": "/api/v1/repository/{repository}/image/{imageid}/security",
-            "x-tag": "secscan",
-            "parameters": [
-                {
-                    "name": "imageid",
-                    "in": "path",
-                    "required": true,
-                    "description": "The image ID",
-                    "type": "string"
-                },
-                {
-                    "name": "repository",
-                    "in": "path",
-                    "required": true,
-                    "description": "The full path of the repository. e.g. namespace/name",
-                    "type": "string"
-                }
-            ],
-            "get": {
-                "operationId": "getRepoImageSecurity",
-                "parameters": [
-                    {
-                        "name": "imageid",
-                        "in": "path",
-                        "required": true,
-                        "description": "The image ID",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    },
-                    {
-                        "name": "vulnerabilities",
-                        "in": "query",
-                        "required": false,
-                        "description": "Include vulnerabilities information",
-                        "type": "boolean"
-                    }
-                ],
-                "description": "Fetches the features and vulnerabilities (if any) for a repository image.",
                 "tags": [
                     "secscan"
                 ],
@@ -7717,58 +8062,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteServiceKey",
-                "parameters": [
-                    {
-                        "name": "kid",
-                        "in": "path",
-                        "required": true,
-                        "description": "The unique identifier for a service key",
-                        "type": "string"
-                    }
-                ],
-                "description": "",
-                "tags": [
-                    "superuser"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "super:user"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "updateServiceKey",
                 "parameters": [
@@ -7827,6 +8120,58 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteServiceKey",
+                "parameters": [
+                    {
+                        "name": "kid",
+                        "in": "path",
+                        "required": true,
+                        "description": "The unique identifier for a service key",
+                        "type": "string"
+                    }
+                ],
+                "description": "",
+                "tags": [
+                    "superuser"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "super:user"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             },
@@ -8180,93 +8525,6 @@
                     },
                     "201": {
                         "description": "Successful creation"
-                    }
-                }
-            }
-        },
-        "/api/v1/repository/{repository}/tag/{tag}/images": {
-            "x-name": "endpoints.api.tag.RepositoryTagImages",
-            "x-path": "/api/v1/repository/{repository}/tag/{tag}/images",
-            "x-tag": "tag",
-            "parameters": [
-                {
-                    "name": "tag",
-                    "in": "path",
-                    "required": true,
-                    "description": "The name of the tag",
-                    "type": "string"
-                },
-                {
-                    "name": "repository",
-                    "in": "path",
-                    "required": true,
-                    "description": "The full path of the repository. e.g. namespace/name",
-                    "type": "string"
-                }
-            ],
-            "get": {
-                "operationId": "listTagImages",
-                "parameters": [
-                    {
-                        "name": "tag",
-                        "in": "path",
-                        "required": true,
-                        "description": "The name of the tag",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    },
-                    {
-                        "name": "owned",
-                        "in": "query",
-                        "required": false,
-                        "description": "If specified, only images wholely owned by this tag are returned.",
-                        "type": "boolean"
-                    }
-                ],
-                "description": "List the images for the specified repository tag.",
-                "tags": [
-                    "tag"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:read"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "200": {
-                        "description": "Successful invocation"
                     }
                 }
             }
@@ -9266,65 +9524,6 @@
                     "type": "string"
                 }
             ],
-            "delete": {
-                "operationId": "deleteBuildTrigger",
-                "parameters": [
-                    {
-                        "name": "trigger_uuid",
-                        "in": "path",
-                        "required": true,
-                        "description": "The UUID of the build trigger",
-                        "type": "string"
-                    },
-                    {
-                        "name": "repository",
-                        "in": "path",
-                        "required": true,
-                        "description": "The full path of the repository. e.g. namespace/name",
-                        "type": "string"
-                    }
-                ],
-                "description": "Delete the specified build trigger.",
-                "tags": [
-                    "trigger"
-                ],
-                "security": [
-                    {
-                        "oauth2_implicit": [
-                            "repo:admin"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "401": {
-                        "description": "Session required",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "403": {
-                        "description": "Unauthorized access",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            },
             "put": {
                 "operationId": "updateBuildTrigger",
                 "parameters": [
@@ -9390,6 +9589,65 @@
                     },
                     "200": {
                         "description": "Successful invocation"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteBuildTrigger",
+                "parameters": [
+                    {
+                        "name": "trigger_uuid",
+                        "in": "path",
+                        "required": true,
+                        "description": "The UUID of the build trigger",
+                        "type": "string"
+                    },
+                    {
+                        "name": "repository",
+                        "in": "path",
+                        "required": true,
+                        "description": "The full path of the repository. e.g. namespace/name",
+                        "type": "string"
+                    }
+                ],
+                "description": "Delete the specified build trigger.",
+                "tags": [
+                    "trigger"
+                ],
+                "security": [
+                    {
+                        "oauth2_implicit": [
+                            "repo:admin"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Session required",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "204": {
+                        "description": "Deleted"
                     }
                 }
             },
@@ -10151,6 +10409,38 @@
                 }
             }
         },
+        "UpdateOrgQuotaLimit": {
+            "type": "object",
+            "description": "Description of changing organization quota limit",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Type of quota limit: \"Warning\" or \"Reject\""
+                },
+                "threshold_percent": {
+                    "type": "integer",
+                    "description": "Quota threshold, in percent of quota"
+                }
+            }
+        },
+        "NewOrgQuotaLimit": {
+            "type": "object",
+            "description": "Description of a new organization quota limit",
+            "required": [
+                "type",
+                "threshold_percent"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Type of quota limit: \"Warning\" or \"Reject\""
+                },
+                "threshold_percent": {
+                    "type": "integer",
+                    "description": "Quota threshold, in percent of quota"
+                }
+            }
+        },
         "UserPermission": {
             "type": "object",
             "description": "Description of a user permission.",
@@ -10260,44 +10550,22 @@
             "type": "object",
             "description": "Restores a tag to a specific image",
             "properties": {
-                "image": {
-                    "type": "string",
-                    "description": "(Deprecated: use `manifest_digest`) Image to which the tag should point"
-                },
                 "manifest_digest": {
                     "type": "string",
                     "description": "If specified, the manifest digest that should be used"
                 }
             }
         },
-        "NewOrgQuotaLimit": {
+        "NewProxyCacheConfig": {
             "type": "object",
-            "description": "Description of a new organization quota limit threshold",
+            "description": "Proxy cache configuration for an organization",
             "required": [
-                "percent_of_limit",
-                "quota_type_id"
+                "upstream_registry"
             ],
             "properties": {
-                "percent_of_limit": {
-                    "type": "integer",
-                    "description": "Percentage of quota at which to do something"
-                },
-                "quota_type_id": {
-                    "type": "integer",
-                    "description": "Quota type Id"
-                }
-            }
-        },
-        "NewOrgQuota": {
-            "type": "object",
-            "description": "Description of a new organization quota",
-            "required": [
-                "limit_bytes"
-            ],
-            "properties": {
-                "limit_bytes": {
-                    "type": "integer",
-                    "description": "Number of bytes the organization is allowed"
+                "upstream_registry": {
+                    "type": "string",
+                    "description": "Name of the upstream registry that is to be cached"
                 }
             }
         },
@@ -10445,6 +10713,29 @@
                 "unstructured_metadata": {
                     "type": "object",
                     "description": "Optional unstructured metadata for the robot"
+                }
+            }
+        },
+        "UpdateOrgQuota": {
+            "type": "object",
+            "description": "Description of a new organization quota",
+            "properties": {
+                "limit_bytes": {
+                    "type": "integer",
+                    "description": "Number of bytes the organization is allowed"
+                }
+            }
+        },
+        "NewOrgQuota": {
+            "type": "object",
+            "description": "Description of a new organization quota",
+            "required": [
+                "limit_bytes"
+            ],
+            "properties": {
+                "limit_bytes": {
+                    "type": "integer",
+                    "description": "Number of bytes the organization is allowed"
                 }
             }
         },
@@ -10946,13 +11237,6 @@
             "type": "object",
             "description": "Makes changes to a specific tag",
             "properties": {
-                "image": {
-                    "type": [
-                        "string",
-                        "null"
-                    ],
-                    "description": "(Deprecated: Use `manifest_digest`) Image to which the tag should point."
-                },
                 "manifest_digest": {
                     "type": [
                         "string",
@@ -11103,10 +11387,6 @@
             "description": "Messages API."
         },
         {
-            "name": "image",
-            "description": "List and lookup repository images."
-        },
-        {
             "name": "logs",
             "description": "Access usage logs for organizations or repositories."
         },
@@ -11120,7 +11400,7 @@
         },
         {
             "name": "namespacequota",
-            "description": "Manage organizations, members and OAuth applications."
+            "description": ""
         },
         {
             "name": "organization",
